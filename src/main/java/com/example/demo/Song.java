@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.Album;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,8 +10,10 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String songTitle;
-    private String artisteName;
+    private String artiste;
+
     private String genre;
+    private double songPrice;
     private double duration;
 
     @ManyToOne(cascade ={CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REMOVE } ,fetch = FetchType.EAGER)
@@ -37,12 +41,12 @@ public class Song {
         this.songTitle = songTitle;
     }
 
-    public String getArtisteName() {
-        return artisteName;
+    public String getArtiste() {
+        return artiste;
     }
 
-    public void setArtisteName(String artisteName) {
-        this.artisteName = artisteName;
+    public void setArtiste(String artiste) {
+        this.artiste = artiste;
     }
 
     public String getGenre() {
@@ -51,6 +55,14 @@ public class Song {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public double getSongPrice() {
+        return songPrice;
+    }
+
+    public void setSongPrice(double songPrice) {
+        this.songPrice = songPrice;
     }
 
     public double getDuration() {

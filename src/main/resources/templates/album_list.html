@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="all-body container">
+    <div class="section-intro">
+        <h2>All Albums</h2>
+        <form class="form-inline search" action="/album_list" method="post">
+            <div class="form-group search-group">
+                <label for="search">Search By Album Title: </label>
+                <input type="text" class="form-control" name="search" id="search" placeholder="Type Album Title"/>
+                <button type="submit" class="btn btn-danger">Search</button>
+                <a href="/album_list" type="button" class="btn btn-danger">Reset Search</a>
+            </div>
+        </form>
+    </div>
+    <div class="all-albums">
+        <div class="row">
+            <div th:each="album : ${albums}" class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img th:src="${album.imgUrl}" alt="album-image"/>
+                    <div class="caption">
+                        <h3>
+                            <span th:text="${album.albumTitle}"></span>
+                            <hr>
+                            <span th:text="${album.artiste.albumTitle}"></span>
+                        </h3>
+                        <div>
+                            <h5>Genre: </h5>
+                            <span th:text="${album.genre}" ></span>
+                        </div>
+                        <div>
+                            <h5>Album Price: </h5>
+                            <span th:text="${album.albumPrice}"></span>
+                        </div>
+                        <a th:href="'/show_album/' + ${album.id}" type="button" class="btn btn-danger">See Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
