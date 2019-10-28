@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Customer Information</h1>
+[[${user.lastName}]], [[${user.firstName}]]<br/><br/>
+
+<!--    [[${customer.address}]]<br/>-->
+<!--    [[${customer.city}]], [[${customer.state}]] [[${customer.zipcode}]]<br/>-->
+
+<br/><br/>
+<button type="button"><a th:href="@{/addAccount.html/{id}(id=${user.id})}"/>Add Account</button>
+<br/><br/>
+
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">Account</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${customer.accounts}">
+        <td th:text="${account.acctno}"></td>
+               <td>
+            <a th:href="@{/transaction/{id}/{option}(id=${account.id}, option=1)}">Transaction</a>
+            <a th:href="@{/transaction/{id}/{option}(id=${account.id}, option=2)}">Statement</a>
+            <a th:href="@{/transaction/{id}/{option}(id=${account.id}, option=3)}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

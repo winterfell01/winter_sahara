@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<h1>User's Account Statement</h1>
+
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Credit</th>
+        <th scope="col">Debit</th>
+        <th scope="col">Balance</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction : ${transactions}">
+        <td th:text="${transaction.date}"></td>
+
+        <td>
+            <span th:if="${transaction.deposit}">[[${transaction.amount}]]</span>
+            <span th:unless="${transaction.deposit}">---</span>
+        </td>
+        <td>
+            <span th:if="${transaction.deposit}">---</span>
+            <span th:unless="${transaction.deposit}">[[${transaction.amount}]]</span>
+        </td>
+        <td th:text="${transaction.balance}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

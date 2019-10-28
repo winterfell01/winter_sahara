@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>User's Accounts</h1>
+
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">Account</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${user.accounts}">
+        <td th:text="${account.acctno}"></td>
+        <td>
+            <a th:href="@{/xfer/{id}(id=${account.id})}">Transaction</a>
+            <a th:href="@{/statement/{id}(id=${account.id})}">Statement</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
